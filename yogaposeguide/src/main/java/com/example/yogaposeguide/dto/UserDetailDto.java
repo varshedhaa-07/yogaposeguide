@@ -1,4 +1,4 @@
-package com.example.yogaposeguide.models;
+package com.example.yogaposeguide.dto;
 
 import java.util.Set;
 

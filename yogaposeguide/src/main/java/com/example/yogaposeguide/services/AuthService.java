@@ -1,15 +1,14 @@
 package com.example.yogaposeguide.services;
 
 import com.example.yogaposeguide.jwt.JwtTokenProvider;
-import com.example.yogaposeguide.models.JwtResponseDto;
+import com.example.yogaposeguide.dto.JwtResponseDto;
 import com.example.yogaposeguide.models.RegisterDetails;
 import com.example.yogaposeguide.models.Roles;
-import com.example.yogaposeguide.models.UserDetailDto;
+import com.example.yogaposeguide.dto.UserDetailDto;
 import com.example.yogaposeguide.repository.RegisterDetailsRepository;
 import com.example.yogaposeguide.repository.RegisterRepository;
 import com.example.yogaposeguide.repository.RolesRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;

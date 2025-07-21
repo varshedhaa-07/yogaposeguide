@@ -20,7 +20,7 @@ public class YogaPoseController {
     }
 
     @GetMapping("/poses/{poseId}")
-    public YogaPoses getPoseById(@PathVariable int poseId){
+    public YogaPoses getPoseById(@PathVariable Long poseId){
         return yogaPoseService.getPoseByID(poseId);
     }
 
@@ -30,13 +30,13 @@ public class YogaPoseController {
     }
 
     @PutMapping("/poses/{poseId}")
-    public String updatePose(@PathVariable int poseId, @RequestBody YogaPoses updatedPose) {
+    public String updatePose(@PathVariable Long poseId, @RequestBody YogaPoses updatedPose) {
         return yogaPoseService.updatePose(poseId, updatedPose);
     }
 
 
     @DeleteMapping("/poses/{poseId}")
-    public String deletePoseById(@PathVariable int poseId){
+    public String deletePoseById(@PathVariable long poseId){
         return yogaPoseService.deletePoseById(poseId);
     }
 }

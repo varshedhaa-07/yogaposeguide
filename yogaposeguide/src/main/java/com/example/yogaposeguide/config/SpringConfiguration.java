@@ -30,6 +30,7 @@ public class SpringConfiguration {
 //                            auth.requestMatchers(HttpMethod.DELETE,"/employee").hasRole("ADMIN");
 //                            auth.requestMatchers(HttpMethod.GET,"/**").hasAnyRole("ADMIN","USER");
                     auth.requestMatchers("/api/auth/**").permitAll();
+                    auth.requestMatchers("/api/routine/**").permitAll();
 //                    auth.anyRequest().authenticated();
                 });
 //                .addFilterBefore(jwtAuthenticationFilter , UsernamePasswordAuthenticationFilter.class);

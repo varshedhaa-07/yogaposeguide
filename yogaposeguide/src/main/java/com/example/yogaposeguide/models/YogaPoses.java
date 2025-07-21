@@ -14,19 +14,26 @@ import java.util.Set;
 public class YogaPoses {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int poseId;
+    private Long id;
     private String poseName;
     private String poseDes;
     private String benefits;
     private String imgUrl;
     private String difficulty;
 
-    public int getPoseId() {
-        return poseId;
+//    @ManyToMany(mappedBy = "poses")
+//    private Set<Routine> routineEntries;
+
+
+//    @OneToMany(mappedBy = "pose", cascade = CascadeType.ALL)
+//    private Set<Routine> progressEntries;
+
+    public Long getId() {
+        return id;
     }
 
-    public void setPoseId(int poseId) {
-        this.poseId = poseId;
+    public void setId(Long poseId) {
+        this.id= poseId;
     }
 
     public String getPoseName() {
@@ -68,4 +75,12 @@ public class YogaPoses {
     public void setDifficulty(String difficulty) {
         this.difficulty = difficulty;
     }
+
+//    public Set<Routine> getRoutineEntries() {
+//        return routineEntries;
+//    }
+//
+//    public void setRoutineEntries(Set<Routine> routineEntries) {
+//        this.routineEntries = routineEntries;
+//    }
 }

@@ -1,5 +1,6 @@
 package com.example.yogaposeguide.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -30,6 +31,15 @@ public class RegisterDetails {
             inverseJoinColumns = @JoinColumn(name="role_id", referencedColumnName = "roleId")
     )
     private Set<Roles> roles;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private Set<Routine> routineList;
+
+//    @JsonIgnore
+//    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+//    private Set<Progress> progressList;
+
 
     public int getId() {
         return id;

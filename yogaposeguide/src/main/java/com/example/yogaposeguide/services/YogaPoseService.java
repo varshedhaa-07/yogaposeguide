@@ -17,7 +17,7 @@ public class YogaPoseService {
         return yogaPoseRepository.findAll();
     }
 
-    public YogaPoses getPoseByID(int poseId) {
+    public YogaPoses getPoseByID(Long poseId) {
         return yogaPoseRepository.findById(poseId).orElse(new YogaPoses());
     }
 
@@ -26,7 +26,7 @@ public class YogaPoseService {
         return "Pose added successfully";
     }
 
-    public String updatePose(int poseId, YogaPoses updatedPose) {
+    public String updatePose(Long poseId, YogaPoses updatedPose) {
         return yogaPoseRepository.findById(poseId).map(existingPose -> {
             existingPose.setPoseName(updatedPose.getPoseName());
             existingPose.setDifficulty(updatedPose.getDifficulty());
@@ -39,7 +39,7 @@ public class YogaPoseService {
     }
 
 
-    public String deletePoseById(int poseId) {
+    public String deletePoseById(Long poseId) {
         yogaPoseRepository.deleteById(poseId);
         return "Pose deleted successfully";
     }
