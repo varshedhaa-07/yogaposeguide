@@ -62,19 +62,19 @@ public class RoutineService {
 
 
 
-    public Routine updateRoutine(Long id, Routine routine) {
-
+    public Routine updateRoutine(Long id, RoutineReqDto request) {
         Routine existing = routineRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Routine not found"));
 
-        Set<YogaPoses> updatedPoses = routine.getPoses().stream()
-                .map(p -> yogaPoseRepository.findById(p.getId())
-                        .orElseThrow(() -> new RuntimeException("Pose not found with id: " + p.getId())))
+        Set<YogaPoses> updatedPoses = request.getPoseIds().stream()
+                .map(poseId -> yogaPoseRepository.findById(poseId)
+                        .orElseThrow(() -> new RuntimeException("Pose not found")))
                 .collect(Collectors.toSet());
 
         existing.setPoses(updatedPoses);
         return routineRepository.save(existing);
     }
+
 
 
 
