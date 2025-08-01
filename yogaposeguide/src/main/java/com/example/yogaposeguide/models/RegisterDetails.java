@@ -34,7 +34,7 @@ public class RegisterDetails {
 
     @JsonIgnore
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-    private Set<Routine> routineList;
+    private Set<Routine> routines;
 
 //    @JsonIgnore
 //    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
@@ -87,5 +87,13 @@ public class RegisterDetails {
 
     public void setRoles(Set<Roles> roles) {
         this.roles = roles;
+    }
+
+    public Set<Routine> getRoutines() {
+        return routines;
+    }
+
+    public void setRoutines(Set<Routine> routines) {
+        this.routines = routines;
     }
 }

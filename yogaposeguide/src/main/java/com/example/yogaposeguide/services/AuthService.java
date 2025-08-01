@@ -72,8 +72,9 @@ public class AuthService {
                 .stream()
                 .map(role -> role.getRoleName())
                 .collect(Collectors.toSet());
+        int id = user.getId();
 
-        return new JwtResponseDto(token, user.getUserName(), roleNames);
+        return new JwtResponseDto(token, user.getUserName(), roleNames,id);
     }
 
     public List<RegisterDetails> getUsers() {

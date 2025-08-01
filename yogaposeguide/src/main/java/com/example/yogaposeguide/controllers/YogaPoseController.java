@@ -44,4 +44,5 @@ public class YogaPoseController {
     public String deletePoseById(@PathVariable long poseId){
         return yogaPoseService.deletePoseById(poseId);
     }
+
 }
