@@ -75,9 +75,6 @@ public class RoutineService {
         return routineRepository.save(existing);
     }
 
-
-
-
     public String deleteRoutine(Long id) {
         routineRepository.deleteById(id);
         return "Routine deleted successfully";

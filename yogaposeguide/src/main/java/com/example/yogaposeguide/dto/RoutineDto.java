@@ -49,12 +49,10 @@ public class RoutineDto {
         public String getDifficulty() { return difficulty; }
     }
 
-    // Getters
     public Long getId() { return id; }
     public String getUsername() { return username; }
     public Set<PoseDto> getPoses() { return poses; }
 
-    // Setters
     public void setId(Long id) { this.id = id; }
     public void setUsername(String username) { this.username = username; }
     public void setPoses(Set<PoseDto> poses) { this.poses = poses; }

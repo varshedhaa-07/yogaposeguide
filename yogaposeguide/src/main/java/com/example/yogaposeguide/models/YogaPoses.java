@@ -21,13 +21,6 @@ public class YogaPoses {
     private String imgUrl;
     private String difficulty;
 
-//    @ManyToMany(mappedBy = "poses")
-//    private Set<Routine> routineEntries;
-
-
-//    @OneToMany(mappedBy = "pose", cascade = CascadeType.ALL)
-//    private Set<Routine> progressEntries;
-
     public Long getId() {
         return id;
     }
@@ -76,11 +69,4 @@ public class YogaPoses {
         this.difficulty = difficulty;
     }
 
-//    public Set<Routine> getRoutineEntries() {
-//        return routineEntries;
-//    }
-//
-//    public void setRoutineEntries(Set<Routine> routineEntries) {
-//        this.routineEntries = routineEntries;
-//    }
 }

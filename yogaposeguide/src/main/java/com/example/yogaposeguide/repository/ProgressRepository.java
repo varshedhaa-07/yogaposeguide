@@ -18,7 +18,6 @@ public interface ProgressRepository extends JpaRepository<Progress,Long> {
 
     Optional<Progress> findByUserAndPosesAndCompletedOn(RegisterDetails user, YogaPoses pose, LocalDate now);
 
-    List<Progress> findByUserAndCompletedOn(RegisterDetails user, LocalDate today);
 
     @Query("SELECT p FROM Progress p WHERE p.user.id = :userId AND p.completedOn = :today AND LOWER(p.status) = 'completed'")
     List<Progress> findCompletedByUserAndDate(@Param("userId") Long userId, @Param("today") LocalDate today);

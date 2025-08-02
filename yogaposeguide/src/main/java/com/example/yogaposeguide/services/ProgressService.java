@@ -32,7 +32,6 @@ public class ProgressService {
     @Autowired
     private RoutineRepository routineRepository;
 
-    /** ✅ Mark a pose as completed or update it for today */
     public Progress markProgress(ProgressRequestDto request) {
         RegisterDetails user = userRepository.findById(request.getUserId())
                 .orElseThrow(() -> new RuntimeException("User not found"));
@@ -54,7 +53,6 @@ public class ProgressService {
             return progressRepository.save(progress);
         }
 
-        // Create new progress entry
         Progress progress = new Progress();
         progress.setUser(user);
         progress.setPoses(pose);
@@ -67,33 +65,13 @@ public class ProgressService {
         return progressRepository.save(progress);
     }
 
-    /** ✅ Get all progress entries for a user */
     public List<Progress> getProgressByUser(Long userId) {
         RegisterDetails user = userRepository.findById(userId)
                 .orElseThrow(() -> new RuntimeException("User not found"));
         return progressRepository.findByUser(user);
     }
 
-    /** ✅ Get progress by status */
-    public List<Progress> getProgressByUserAndStatus(Long userId, String status) {
-        RegisterDetails user = userRepository.findById(userId)
-                .orElseThrow(() -> new RuntimeException("User not found"));
-        return progressRepository.findByUserAndStatus(user, status);
-    }
 
-    /** ✅ Update progress status (Complete/In-progress) */
-    public Progress updateProgressStatus(Long progressId, String newStatus) {
-        Progress progress = progressRepository.findById(progressId)
-                .orElseThrow(() -> new RuntimeException("Progress not found"));
-
-        progress.setStatus(newStatus);
-        if ("COMPLETED".equalsIgnoreCase(newStatus)) {
-            progress.setCompletedOn(LocalDate.now());
-        }
-        return progressRepository.save(progress);
-    }
-
-    /** ✅ Compute Lifetime Summary (Used for analytics if needed) */
     public Map<String, Object> getUserProgressSummary(Long userId) {
         List<Progress> progressList = getProgressByUser(userId);
 
@@ -114,20 +92,16 @@ public class ProgressService {
         return summary;
     }
 
-    /** ✅ Compute today's summary for Pie Chart */
     public Map<String, Object> getTodaySummary(Long userId) {
         LocalDate today = LocalDate.now();
 
-        // 1️⃣ Get total poses in all routines of the user
         List<Routine> routines = routineRepository.findRoutinesWithPosesByUserId(userId);
         long totalPoses = routines.stream()
                 .flatMap(r -> r.getPoses().stream())
                 .count();
 
-        // 2️⃣ Get today's completed poses
         long completedPoses = progressRepository.findCompletedByUserAndDate(userId, today).size();
 
-        // 3️⃣ Prepare summary
         Map<String, Object> summary = new HashMap<>();
         summary.put("date", today);
         summary.put("totalPoses", totalPoses);
@@ -136,18 +110,12 @@ public class ProgressService {
         return summary;
     }
 
-
-
-
-
-    /** ✅ Compute last 7 days summary for a line/bar chart */
     public Map<LocalDate, Long> getWeeklyProgress(Long userId) {
         List<Progress> progressList = getProgressByUser(userId);
 
         LocalDate today = LocalDate.now();
         LocalDate sevenDaysAgo = today.minusDays(6);
 
-        // Group by date but filter only last 7 days
         return progressList.stream()
                 .filter(p -> p.getCompletedOn() != null)
                 .filter(p -> !p.getCompletedOn().isBefore(sevenDaysAgo))
