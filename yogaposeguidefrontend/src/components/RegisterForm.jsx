@@ -33,7 +33,7 @@ function RegisterForm({onSwitchToLogin}) {
   e.preventDefault();
   try {
     console.log("Submitting form with data:", form);
-    await axios.post('http://localhost:8080/api/auth/register', form);
+    await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/auth/register`, form);
     alert('Registration successful! You can now login.');
     onSwitchToLogin();
   } catch (error) {

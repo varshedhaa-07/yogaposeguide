@@ -15,7 +15,7 @@ const RoutinePage = () => {
   // Fetch user's routines
   const fetchRoutine = async () => {
     try {
-      const res = await axios.get(`http://localhost:8080/api/routine/user/${userId}`, {
+      const res = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/routine/user/${userId}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       setRoutine(res.data);
@@ -27,7 +27,7 @@ const RoutinePage = () => {
   // Fetch all poses
   const fetchAllPoses = async () => {
     try {
-      const res = await axios.get(`http://localhost:8080/api/auth/poses`, {
+      const res = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/auth/poses`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       setAllPoses(res.data);
@@ -45,7 +45,7 @@ const RoutinePage = () => {
   const handleDelete = async (routineId) => {
     if (!window.confirm("Remove this routine?")) return;
     try {
-      await axios.delete(`http://localhost:8080/api/routine/delete/${routineId}`, {
+      await axios.delete(`${import.meta.env.VITE_BACKEND_URL}/api/routine/delete/${routineId}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       setRoutine(routine.filter((item) => item.id !== routineId));
@@ -73,7 +73,7 @@ const RoutinePage = () => {
   const handleUpdateRoutine = async () => {
     try {
       await axios.put(
-        `http://localhost:8080/api/routine/update/${selectedRoutine.id}`,
+        `${import.meta.env.VITE_BACKEND_URL}/api/routine/update/${selectedRoutine.id}`,
         { userId: userId, poseIds: selectedPoseIds },
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -88,7 +88,7 @@ const RoutinePage = () => {
   const handleMarkComplete = async (poseId) => {
     try {
       await axios.post(
-        "http://localhost:8080/api/progress/mark",
+        `${import.meta.env.VITE_BACKEND_URL}/api/progress/mark`,
         { userId: userId, poseId: poseId, status: "COMPLETED" },
         { headers: { Authorization: `Bearer ${token}` } }
       );

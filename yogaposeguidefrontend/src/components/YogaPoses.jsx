@@ -19,7 +19,7 @@ const YogaPoses = () => {
 
   const fetchPoses = async (token) => {
     try {
-      const res = await axios.get("http://localhost:8080/api/auth/poses", {
+      const res = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/auth/poses`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -34,7 +34,7 @@ const YogaPoses = () => {
     if (!window.confirm("Are you sure you want to delete this pose?")) return;
 
     try {
-      await axios.delete(`http://localhost:8080/api/auth/poses/${id}`, {
+      await axios.delete(`${import.meta.env.VITE_BACKEND_URL}/api/auth/poses/${id}`, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },

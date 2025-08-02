@@ -39,7 +39,7 @@ const EditPoseForm = () => {
   useEffect(() => {
     const fetchPose = async () => {
       try {
-        const res = await axios.get(`http://localhost:8080/api/auth/poses/${id}`);
+        const res = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/auth/poses/${id}`);
         setFormData({
           poseName: res.data.poseName || "",
           poseDes: res.data.poseDes || "",
@@ -70,7 +70,7 @@ const EditPoseForm = () => {
     e.preventDefault();
     try {
       await axios.put(
-        `http://localhost:8080/api/auth/poses/${id}`,
+        `${import.meta.env.VITE_BACKEND_URL}/api/auth/poses/${id}`,
         formData,
         {
           headers: {

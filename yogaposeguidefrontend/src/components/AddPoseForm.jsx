@@ -49,7 +49,7 @@ const AddPoseForm = () => {
     try {
       const token = localStorage.getItem("token");
 
-      const response = await axios.post("http://localhost:8080/api/auth/poses", formData, {
+      const response = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/auth/poses`, formData, {
         headers: {
           "Content-Type": "application/json",
           Authorization: `Bearer ${token}`

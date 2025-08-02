@@ -35,13 +35,13 @@ const DashboardPage = () => {
   const fetchDashboardData = async () => {
     try {
       const [todayRes, weeklyRes, summaryRes] = await Promise.all([
-        axios.get(`http://localhost:8080/api/progress/user/${userId}/today-summary`, {
+        axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/progress/user/${userId}/today-summary`, {
           headers: { Authorization: `Bearer ${token}` },
         }),
-        axios.get(`http://localhost:8080/api/progress/user/${userId}/weekly`, {
+        axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/progress/user/${userId}/weekly`, {
           headers: { Authorization: `Bearer ${token}` },
         }),
-        axios.get(`http://localhost:8080/api/progress/user/${userId}/summary`, {
+        axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/progress/user/${userId}/summary`, {
           headers: { Authorization: `Bearer ${token}` },
         }),
       ]);
